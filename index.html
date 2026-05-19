@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feliz Cumpleaños, Mi Amor 💙</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --deep-navy: #0a1628;
+      --midnight: #0d1f3c;
+      --ocean: #1a3a5c;
+      --steel: #2d5986;
+      --sky: #4a90c4;
+      --champagne: #f5e6c8;
+      --gold: #c9a84c;
+      --blush: #f0d5c0;
+      --cream: #fdf6ee;
+      --warm-white: #fff9f3;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--deep-navy);
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* ── STARS BACKGROUND ── */
+    .stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .stars span {
+      position: absolute;
+      border-radius: 50%;
+      background: white;
+      animation: twinkle var(--d, 3s) ease-in-out infinite alternate;
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.1; transform: scale(1); }
+      to   { opacity: 0.9; transform: scale(1.3); }
+    }
+
+    /* ── HERO / SECTION 1 ── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px 60px;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(74,144,196,0.18) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: 18px;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.3s forwards;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 10vw, 7rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--warm-white);
+      opacity: 0;
+      animation: fadeUp 1s ease 0.55s forwards;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 32px auto;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.8s forwards;
+    }
+
+    /* ── HERO IMAGE ── */
+    .hero-image-wrapper {
+      position: relative;
+      width: min(380px, 90vw);
+      margin: 0 auto 40px;
+      opacity: 0;
+      animation: fadeUp 1s ease 1s forwards;
+    }
+
+    .hero-image-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: -12px;
+      border: 1px solid rgba(201,168,76,0.35);
+      border-radius: 4px;
+      z-index: -1;
+    }
+
+    .hero-image-wrapper::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+      border-radius: 4px;
+      z-index: -1;
+    }
+
+    /* 
+    ══════════════════════════════════════════════
+    📸 IMAGEN HÉROE (Sección 1)
+    Reemplaza "ruta/a/tu-imagen.jpg" con la ruta 
+    real de tu imagen. Ej: "img/foto-cumple.jpg"
+    ══════════════════════════════════════════════
+    */
+    .hero-image-wrapper img {
+      width: 100%;
+      display: block;
+      border-radius: 4px;
+      object-fit: cover;
+      aspect-ratio: 3/4;
+      /* src se coloca abajo en el <img> */
+    }
+
+    .hero-text-block {
+      max-width: 600px;
+      opacity: 0;
+      animation: fadeUp 1s ease 1.2s forwards;
+    }
+
+    /* 
+    ══════════════════════════════════════════════
+    ✏️  TEXTO HÉROE (Sección 1)
+    Escribe aquí el mensaje principal para tu pareja.
+    El párrafo está marcado con el comentario abajo.
+    ══════════════════════════════════════════════
+    */
+    .hero-text-block p {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      line-height: 1.9;
+      color: var(--champagne);
+      font-weight: 300;
+    }
+
+    .hero-text-block .highlight {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      font-style: italic;
+      color: var(--gold);
+      display: block;
+      margin-top: 18px;
+    }
+
+    /* ── NAV DOTS ── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      animation: fadeUp 1s ease 1.8s forwards;
+      color: var(--sky);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+    }
+
+    .scroll-hint::before {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, transparent, var(--sky));
+      animation: scrollLine 1.5s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine {
+      0%,100% { opacity: 0.3; transform: scaleY(1); }
+      50%      { opacity: 1;   transform: scaleY(1.1); }
+    }
+
+    /* ── SECTION SHARED ── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 100px 24px;
+    }
+
+    .section-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--warm-white);
+      margin-bottom: 40px;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    /* ── SEPARATOR ── */
+    .sep {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin-bottom: 40px;
+    }
+
+    /* ── SECTION 2: OUR STORY ── */
+    #story {
+      background: linear-gradient(180deg, var(--deep-navy) 0%, var(--midnight) 100%);
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 52px;
+    }
+
+    @media (max-width: 640px) {
+      .story-grid { grid-template-columns: 1fr; }
+    }
+
+    .story-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+
+    .story-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,22,40,0.85) 0%, transparent 55%);
+      z-index: 1;
+    }
+
+    /*
+    ══════════════════════════════════════════════
+    📸 IMAGEN HISTORIA 1 (Sección 2 - izquierda)
+    Reemplaza src="" con tu ruta. Ej: "img/foto1.jpg"
+    ══════════════════════════════════════════════
+    */
+    .story-card img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .story-card:hover img {
+      transform: scale(1.04);
+    }
+
+    .story-card .card-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      padding: 24px 20px 20px;
+    }
+
+    /*
+    ══════════════════════════════════════════════
+    ✏️  CAPTION IMAGEN 1 (Sección 2)
+    Cambia el texto entre las etiquetas <span> y <p>
+    ══════════════════════════════════════════════
+    */
+    .card-caption span {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .card-caption p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--warm-white);
+      line-height: 1.3;
+    }
+
+    .story-text-block {
+      max-width: 700px;
+    }
+
+    /*
+    ══════════════════════════════════════════════
+    ✏️  TEXTOS NUESTRA HISTORIA (Sección 2)
+    Los párrafos dentro de .story-paragraph son 
+    los bloques de texto de esta sección. 
+    Agrega o edita los <p> dentro de ese div.
+    ══════════════════════════════════════════════
+    */
+    .story-paragraph p {
+      font-size: 1.05rem;
+      line-height: 1.95;
+      color: var(--champagne);
+      margin-bottom: 22px;
+    }
+
+    .story-quote {
+      border-left: 2px solid var(--gold);
+      padding-left: 24px;
+      margin: 40px 0;
+    }
+
+    /*
+    ══════════════════════════════════════════════
+    ✏️  FRASE ESPECIAL (Sección 2)
+    Escribe tu frase favorita o la que les 
+    identifique dentro del <blockquote> abajo.
+    ══════════════════════════════════════════════
+    */
+    .story-quote blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-style: italic;
+      color: var(--warm-white);
+      line-height: 1.5;
+    }
+
+    /* ── SECTION 3: INVITATION ── */
+    #invite {
+      background: linear-gradient(180deg, var(--midnight) 0%, var(--ocean) 60%, var(--midnight) 100%);
+    }
+
+.invite-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+    @media (max-width: 700px) {
+      .invite-layout { grid-template-columns: 1fr; }
+    }
+
+    .invite-image-wrap {
+      position: relative;
+    }
+
+    .invite-image-wrap::before {
+      content: '';
+      position: absolute;
+      top: -16px;
+      left: -16px;
+      right: 16px;
+      bottom: 16px;
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 4px;
+    }
+
+    /*
+    ══════════════════════════════════════════════
+    📸 IMAGEN INVITACIÓN (Sección 3)
+    Reemplaza src="" con tu ruta. Ej: "img/invite.jpg"
+    ══════════════════════════════════════════════
+    */
+.invite-image-wrap img {
+  width: 100%;
+  display: block;
+  border-radius: 4px;
+  object-fit: contain;    /* ← CAMBIA cover por contain */
+  aspect-ratio: auto;     /* ← CAMBIA a auto para respetar las dimensiones reales */
+  position: relative;
+  z-index: 1;
+  box-shadow: 20px 20px 60px rgba(0,0,0,0.5);
+}
+
+    .invite-content {}
+
+    /*
+    ══════════════════════════════════════════════
+    ✏️  TEXTO INVITACIÓN (Sección 3)
+    Edita los <p> dentro de .invite-body para 
+    escribir tu invitación personalizada.
+    También puedes cambiar la fecha, hora y lugar
+    en los bloques .detail-item abajo.
+    ══════════════════════════════════════════════
+    */
+    .invite-body p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--champagne);
+      margin-bottom: 20px;
+    }
+
+    .invite-details {
+      margin-top: 44px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .detail-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .detail-icon {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+      color: var(--gold);
+    }
+
+    .detail-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /*
+    ══════════════════════════════════════════════
+    ✏️  DETALLES DE LA INVITACIÓN
+    Edita los <strong> (título) y <span> (valor)
+    de cada .detail-item para personalizar fecha,
+    hora y lugar de tu plan.
+    ══════════════════════════════════════════════
+    */
+    .detail-info strong {
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: 4px;
+    }
+
+    .detail-info span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--warm-white);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 60px 24px 80px;
+      background: var(--deep-navy);
+    }
+
+    .footer-heart {
+      font-size: 2rem;
+      display: block;
+      animation: pulse 2s ease-in-out infinite;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    @keyframes pulse {
+      0%,100% { transform: scale(1);    opacity: 0.8; }
+      50%      { transform: scale(1.15); opacity: 1;   }
+    }
+
+    footer p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--champagne);
+      opacity: 0.7;
+    }
+
+    /* ── AUDIO BUTTON ── */
+    #audioBtn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.5);
+      background: rgba(10,22,40,0.85);
+      backdrop-filter: blur(8px);
+      color: var(--gold);
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    #audioBtn:hover {
+      transform: scale(1.1);
+      border-color: var(--gold);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── STARS ── -->
+  <div class="stars" id="stars"></div>
+
+  <!-- ── AUDIO ── -->
+  <!--
+  ══════════════════════════════════════════════
+  🎵 CANCIÓN DE FONDO: "Sweet" – Cigarettes After Sex
+  Descarga el archivo de audio y colócalo en tu 
+  proyecto (ej: carpeta "audio/"). Luego reemplaza
+  src="" con la ruta, por ejemplo: "audio/sweet.mp3"
+  El botón del ángulo inferior derecho la reproduce.
+  ══════════════════════════════════════════════
+  -->
+  <audio id="bgAudio" loop>
+    <!-- ════════════════════════════════════════════════════════════
+    🎵 AUDIO — CAMBIA ESTA RUTA
+    Descarga "Sweet" de Cigarettes After Sex en formato .mp3,
+    créa una carpeta llamada "audio" junto al index.html y
+    guarda el archivo ahí. Luego reemplaza la ruta de abajo.
+
+    EJEMPLO ACTUAL  →  audio/sweet.mp3
+    TU ARCHIVO      →  audio/NOMBRE-DE-TU-ARCHIVO.mp3
+    ════════════════════════════════════════════════════════════ -->
+    <source src="audio/sweet.mp3" type="audio/mpeg" />
+    <!-- ↑ CAMBIA "audio/sweet.mp3" por la ruta real de tu archivo ↑ -->
+  </audio>
+
+  <button id="audioBtn" onclick="toggleAudio()" title="Reproducir música">♪</button>
+
+  <!-- ════════════════════════════════════════════
+       SECCIÓN 1 · HÉROE / CUMPLEAÑOS
+  ════════════════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-glow"></div>
+
+    <p class="eyebrow">Quiero celebrar tu vida como nunca lo hemos hecho mi niña</p>
+
+    <!--
+    ══════════════════════════════════════════════
+    ✏️  NOMBRE DE TU PAREJA — cámbialo aquí
+    ══════════════════════════════════════════════
+    -->
+    <!-- ✏️ NOMBRE — Reemplaza "Valeria" por el nombre de tu pareja -->
+    <h1>Feliz<br/><em>Cumpleaños,</em><br/>Mi Cielo</h1>
+    <!-- ↑ CAMBIA "Valeria" por el nombre real ↑ -->
+
+    <div class="hero-divider"></div>
+
+    <!-- ════════════════════════════════════════════════════════════
+    📸 IMAGEN SECCIÓN 1 — CAMBIA ESTA RUTA
+    Crea una carpeta "img" junto al index.html y pon tu foto ahí.
+
+    ESTRUCTURA DE CARPETAS:
+      mi-proyecto/
+      ├── index.html
+      ├── img/
+      │   ├── foto-hero.jpg        ← esta imagen (sección 1)
+      │   ├── foto-historia1.jpg   ← sección 2, foto izquierda
+      │   ├── foto-historia2.jpg   ← sección 2, foto derecha
+      │   └── foto-invitacion.jpg  ← sección 3
+      └── audio/
+          └── sweet.mp3
+
+    EJEMPLO ACTUAL  →  img/foto-hero.jpg
+    TU IMAGEN       →  img/NOMBRE-DE-TU-FOTO.jpg
+    ════════════════════════════════════════════════════════════ -->
+    <div class="hero-image-wrapper">
+      <img src="img/dia.png" alt="Foto especial" />
+      <!-- ↑ CAMBIA "img/foto-hero.jpg" por la ruta de tu imagen ↑ -->
+    </div>
+
+    <div class="hero-text-block">
+      <!-- ════════════════════════════════════════════════════════════
+      ✏️  MENSAJE PRINCIPAL — SECCIÓN 1
+      Reemplaza el texto del <p> con tu mensaje personal.
+      El <span class="highlight"> es la frase final en dorado.
+      ════════════════════════════════════════════════════════════ -->
+
+      <p>
+        <!-- ✏️ CAMBIA este párrafo con tu mensaje -->
+        Esta imagen fue tomada un 28 de Mayo de 1999, si, el mismo dia en que nacio mi niña preciosa. Fue el descubrimiento de la galaxia mas joven en el universo, y como si fuese arte del destino ese mismo nacio la personas que mas anhelo amar en este y en todos los mundos explorables. Te amo, en esta y en todas las galaxias que pueda conocer, te amo, por ser mi amor mas genuino, mas puro, mas sincero. Te amo, mi galaxia, mi universo, mi mundo, mis ojos, mi sonrisa, mis logros y aciertos. Gracias por traer contigo una galaxia, un mundo, un universo, por ser la belleza contenida en tres lunares, en tus crespos y en tu rostro hermoso. ¿Ves? No me equivocaba cuando te decia que eras preciosa, si contigo nacieron galaxias enteras, y nos dejaron postales como estas, por esto y muchas cosas mas tu vida merece ser celebrada como nunca antes, y yo quiero ser el encargado de hacerlo, porque no hay nada que me haga mas feliz que verte feliz a ti, y celebrar tu vida, tu existencia, tu ser, tu esencia, tu todo. Feliz cumpleaños mi amor, gracias por existir, gracias por ser tú, gracias por ser mi niña preciosa.    
+        <!-- ↑ CAMBIA el texto entre estas etiquetas <p> y </p> ↑ -->
+      </p>
+
+      <span class="highlight">
+        <!-- ✏️ CAMBIA esta frase corta en dorado -->
+        Esto eres tu, una galaxia inefable a quien amo.
+        <!-- ↑ CAMBIA la frase entre <span> y </span> ↑ -->
+      </span>
+    </div>
+
+    <div class="scroll-hint">scroll</div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════
+       SECCIÓN 2 · NUESTRA HISTORIA
+  ════════════════════════════════════════════ -->
+  <section id="story">
+    <div class="section-inner">
+
+      <p class="section-label reveal">Nuestra historia</p>
+      <h2 class="section-title reveal">Todo lo que hemos<br/><em>vivido juntos</em></h2>
+      <div class="sep reveal"></div>
+
+      <!-- GALERÍA 2 FOTOS -->
+      <div class="story-grid reveal">
+
+        <!-- ════════════════════════════════════════════════════════════
+        📸 FOTO HISTORIA 1 — izquierda — CAMBIA ESTA RUTA
+        EJEMPLO ACTUAL  →  img/foto-historia1.jpg
+        TU IMAGEN       →  img/NOMBRE-DE-TU-FOTO.jpg
+        ════════════════════════════════════════════════════════════ -->
+        <div class="story-card">
+          <img src="img/foto1.jpeg" alt="Momento especial 1" />
+          <!-- ↑ CAMBIA "img/foto-historia1.jpg" por tu ruta ↑ -->
+          <div class="card-caption">
+
+            <!-- ✏️ CAPTION FOTO 1 — etiqueta de fecha o lugar -->
+            <span>Siendo feliz con mi bebe</span>
+            <!-- ↑ CAMBIA la fecha o lugar ↑ -->
+
+            <!-- ✏️ CAPTION FOTO 1 — frase corta descriptiva -->
+            <p>Siempre con una sonrisita</p>
+            <!-- ↑ CAMBIA la frase ↑ -->
+
+          </div>
+        </div>
+
+        <!-- ════════════════════════════════════════════════════════════
+        📸 FOTO HISTORIA 2 — derecha — CAMBIA ESTA RUTA
+        EJEMPLO ACTUAL  →  img/foto-historia2.jpg
+        TU IMAGEN       →  img/NOMBRE-DE-TU-FOTO.jpg
+        ════════════════════════════════════════════════════════════ -->
+        <div class="story-card">
+          <img src="img/foto2.jpeg" alt="Momento especial 2" />
+          <!-- ↑ CAMBIA "img/foto-historia2.jpg" por tu ruta ↑ -->
+          <div class="card-caption">
+
+            <!-- ✏️ CAPTION FOTO 2 — etiqueta de fecha o lugar -->
+            <span>Febero 2024 · San Andres</span>
+            <!-- ↑ CAMBIA la fecha o lugar ↑ -->
+
+            <!-- ✏️ CAPTION FOTO 2 — frase corta descriptiva -->
+            <p>Nuestro viaje mas memorable juntos</p>
+            <!-- ↑ CAMBIA la frase ↑ -->
+
+          </div>
+        </div>
+
+      </div><!-- /story-grid -->
+
+      <!-- TEXTO DE HISTORIA -->
+      <div class="story-text-block reveal">
+        <div class="story-paragraph">
+        <!-- ════════════════════════════════════════════════════════════
+        ✏️  PÁRRAFOS DE NUESTRA HISTORIA — SECCIÓN 2
+        Reemplaza cada párrafo con tu texto real.
+        Puedes dejar 2 o agregar más <p> según necesites.
+        ════════════════════════════════════════════════════════════ -->
+
+          <p>
+            <!-- ✏️ CAMBIA este primer párrafo -->
+            Quien diria que el hecho de que me derramases un trago en el rostro terminaria en esto. Luego de casi 4 años pongo en retrospectiva todo lo que ha ocurrido y solo siento gratitud por ti, por permitirme amarte, por enseñarme a amar con esta intensidad, por la manera en que me haces sentir amado y las experiencias y anhelos que he vivido a tu lado. Amo cada uno de tus gestos, tus miradas, tus risas, tus ademanes, amo tu esencia.
+            <!-- ↑ CAMBIA el texto ↑ -->
+          </p>
+          <p>
+            <!-- ✏️ CAMBIA este segundo párrafo -->
+            Hemos vivido momentos maravillosos, miles de sonrisas, viajes inolvidables, noches de películas y abrazos, días de aventuras y tardes de café. Cada experiencia contigo se ha convertido en un recuerdo preciado que atesoro profundamente. Gracias por ser mi compañera de vida, por tu amor incondicional y por hacer que cada día a tu lado sea una algo por lo cual agradecer. 
+            <!-- ↑ CAMBIA el texto ↑ -->
+          </p>
+          <p>
+            <!-- ✏️ CAMBIA este tercer párrafo (o bórralo si no lo necesitas) -->
+            Se acerca tu cumpleaños y solo quiero que sepas lo feliz que estoy de ello. Que no quiero cometer el error de pasarlo por alto o no tener la valentia para dejar todo de lado solo por ver feliz a mi niña en su dia y en su mes. Quiero celebrar tu vida, tu existencia, tu ser, tu esencia, tu todo. Quiero celebrar cada parte de ti, cada detalle que te hace ser la niña de la cual estoy perdidamente enamorado. Quiero hacer de este cumpleaños un día inolvidable para ti, lleno de amor, alegría y momentos que atesoremos para siempre. Feliz cumpleaños desde ya mi amor, gracias por existir, gracias por ser tú, gracias por ser mi niña preciosa. 
+            <!-- ↑ CAMBIA el texto ↑ -->
+          </p>
+        </div>
+
+        <div class="story-quote">
+        <!-- ════════════════════════════════════════════════════════════
+        ✏️  FRASE ESPECIAL / CITA — SECCIÓN 2
+        Escribe aquí una frase que los represente,
+        de una canción, película, o algo que digan entre ustedes.
+        ════════════════════════════════════════════════════════════ -->
+          <blockquote>
+            <!-- ✏️ CAMBIA esta frase -->
+            "Gracias por suavizarme la vida, por permitirme amarte"
+            <!-- ↑ CAMBIA la frase ↑ -->
+          </blockquote>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════
+       SECCIÓN 3 · INVITACIÓN
+  ════════════════════════════════════════════ -->
+  <section id="invite">
+    <div class="section-inner">
+
+      <p class="section-label reveal">Te mereces esto y mas</p>
+      <h2 class="section-title reveal">Quiero celebrar tu vida<br/><em>de una manera especial</em></h2>
+      <div class="sep reveal"></div>
+
+      <div class="invite-layout reveal">
+
+        <!-- ════════════════════════════════════════════════════════════
+        📸 FOTO INVITACIÓN — SECCIÓN 3 — CAMBIA ESTA RUTA
+        EJEMPLO ACTUAL  →  img/foto-invitacion.jpg
+        TU IMAGEN       →  img/NOMBRE-DE-TU-FOTO.jpg
+        ════════════════════════════════════════════════════════════ -->
+        <div class="invite-image-wrap">
+          <img src="img/Plan.png" alt="Nuestra invitación" />
+          <!-- ↑ CAMBIA "img/foto-invitacion.jpg" por tu ruta ↑ -->
+        </div>
+
+        <!-- TEXTO INVITACIÓN -->
+        <div class="invite-content">
+          <div class="invite-body">
+            <!-- ════════════════════════════════════════════════════════════
+            ✏️  TEXTO DE LA INVITACIÓN — SECCIÓN 3
+            Reemplaza los dos párrafos con tu invitación real.
+            ════════════════════════════════════════════════════════════ -->
+
+            <p>
+              <!-- ✏️ CAMBIA este primer párrafo -->
+              Mi amor, no quiero perder este cumpleaños como los anteriores y se que mereces algo mas que especial. No quería dejar pasar tu día sin hacerte saber que quiero celebrarlo contigo de una manera que recuerdes siempre de la manito. Así que aca te doy algunas pistas del plan que tengo para ti, para que vayas emocionándote y sepas que te espera algo hermoso.
+              <!-- ↑ CAMBIA el texto ↑ -->
+            </p>
+            <p>
+              <!-- ✏️ CAMBIA este segundo párrafo -->
+              He pensando en todas las cosas que hemos vivido, todo aquello que te gusta y lo que hemos soñado con vivir de la manito, quiero verte feliz, verte sonriendo, vernos enamorados y siendo nosotros. Escucharte, atenderte, ser a tu lado, celebrar la vida de la persona que hace e hizo de mi mundo algo mucho mejor. 
+              <!-- ↑ CAMBIA el texto ↑ -->
+            </p>
+            <p>
+              <!-- ✏️ CAMBIA este segundo párrafo -->
+              Tu solo ponte linda, se mi amiga, mi confidente, mi niña, que yo me encargo de todo lo demás. De todo lo que se merece mi niña que trago consigo una galaxia al universo el día que nació.
+              <!-- ↑ CAMBIA el texto ↑ -->
+            </p>
+
+          </div>
+
+          <div class="invite-details">
+            <!-- ════════════════════════════════════════════════════════════
+            ✏️  DETALLES DEL PLAN — FECHA, HORA Y LUGAR
+            Reemplaza cada <span> con tu información real.
+            ════════════════════════════════════════════════════════════ -->
+
+            <div class="detail-item">
+              <div class="detail-icon">📅</div>
+              <div class="detail-info">
+                <strong>Fecha</strong>
+                <!-- ✏️ CAMBIA la fecha -->
+                <span>23 de mayo de 2026</span>
+                <!-- ↑ CAMBIA por tu fecha real ↑ -->
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-icon">🕖</div>
+              <div class="detail-info">
+                <strong>Hora</strong>
+                <!-- ✏️ CAMBIA la hora -->
+                <span>8:00 am</span>
+                <!-- ↑ CAMBIA por tu hora real ↑ -->
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-icon">📍</div>
+              <div class="detail-info">
+                <strong>Lugar</strong>
+                <!-- ✏️ CAMBIA el lugar -->
+                <span>El efecto mariposa</span>
+                <!-- ↑ CAMBIA por tu lugar real ↑ -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /invite-layout -->
+    </div>
+  </section>
+
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <span class="footer-heart">♡</span>
+    <!--
+    ✏️  PIE DE PÁGINA — Cambia este mensaje si quieres
+    -->
+    <p>Con todo mi amor, para siempre.</p>
+  </footer>
+
+
+  <!-- ── JS ── -->
+  <script>
+    /* Stars */
+    const starsEl = document.getElementById('stars');
+    for (let i = 0; i < 120; i++) {
+      const s = document.createElement('span');
+      const size = Math.random() * 2.5 + 0.5;
+      s.style.cssText = `
+        width:${size}px; height:${size}px;
+        top:${Math.random()*100}%;
+        left:${Math.random()*100}%;
+        --d:${(Math.random()*4+1.5).toFixed(1)}s;
+        animation-delay:${(Math.random()*4).toFixed(1)}s;
+        opacity:${Math.random()*0.5+0.1};
+      `;
+      starsEl.appendChild(s);
+    }
+
+    /* Scroll reveal */
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(r => io.observe(r));
+
+    /* Audio */
+    const audio = document.getElementById('bgAudio');
+    const btn   = document.getElementById('audioBtn');
+    let playing  = false;
+
+    function toggleAudio() {
+      if (playing) {
+        audio.pause();
+        btn.textContent = '♪';
+        playing = false;
+      } else {
+        audio.play().catch(() => {});
+        btn.textContent = '⏸';
+        playing = true;
+      }
+    }
+
+/* Auto-play: intenta inmediato, si el navegador lo bloquea
+   espera el primer gesto del usuario (clic o toque)        */
+function startAudio() {
+  if (!playing) {
+    audio.play().then(() => {
+      btn.textContent = '⏸';
+      playing = true;
+    }).catch(() => {});
+  }
+}
+
+// Intento inmediato al cargar
+window.addEventListener('load', () => {
+  startAudio();
+});
+
+// Si el navegador lo bloqueó, arranca con el primer toque/clic
+document.addEventListener('click',   startAudio, { once: true });
+document.addEventListener('touchend', startAudio, { once: true });
+  </script>
+
+</body>
+</html>
